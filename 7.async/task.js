@@ -16,7 +16,7 @@ class AlarmClock {
         }
 
         this.alarmCollection.push({
-            callback: callback(),
+            callback: callback,
             time: time,
             canCall: true
         });
@@ -34,15 +34,15 @@ class AlarmClock {
     }
 
     start() {
-        if(this.intervalID) {
+        if(this.intervalId !== null) {
             return;
         } else {
             const checkAlarms = () => {
                 const currentTime = this.getCurrentFormattedTime();
                 this.alarmCollection.forEach(element => {
-                  if (element.time === currentTime && element.canCall) {
-                    alarm.canCall = false;
-                    alarm.callback();
+                  if(element.time === currentTime && element.canCall) {
+                    element.canCall = false;
+                    element.callback();
                   }
                 });
             }
